@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+
 /**
  * Created by LaunchCode
  */
@@ -53,6 +54,22 @@ public class JobData {
 
         return allJobs;
     }
+    public static ArrayList<HashMap<String, String>> findByValue(String value) {
+
+        loadData();
+
+        ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
+
+        for (HashMap<String, String> job : allJobs) {
+
+            String valueCheck = job.toString().toLowerCase();
+
+            if(valueCheck.contains(value.toLowerCase())) {
+                jobs.add(job);
+            }
+        }
+        return jobs;
+    }
 
     /**
      * Returns results of search the jobs data by key/value, using
@@ -74,9 +91,9 @@ public class JobData {
 
         for (HashMap<String, String> row : allJobs) {
 
-            String aValue = row.get(column);
+            String aValue = row.get(column).toLowerCase();
 
-            if (aValue.contains(value)) {
+            if (aValue.contains(value.toLowerCase())) {
                 jobs.add(row);
             }
         }
